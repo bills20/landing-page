@@ -197,6 +197,125 @@
                 font-size: 1.1rem;
             }
         }
+
+        /* Calendly Popup Styles */
+        .calendly-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .calendly-popup-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .calendly-popup-content {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            background: #1a1a1a;
+            padding: 3rem 2rem;
+            border: 2px solid #FFD700;
+            text-align: center;
+            animation: slideUp 0.5s ease-out;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .calendly-popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #FFD700;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .calendly-popup-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .calendly-popup-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .calendly-popup-text {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .calendly-popup-button {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #0a0a0a;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .calendly-popup-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .calendly-popup-content {
+                width: 95%;
+                padding: 2rem 1.5rem;
+            }
+
+            .calendly-popup-title {
+                font-size: 1.5rem;
+            }
+
+            .calendly-popup-text {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -235,7 +354,7 @@
             </div>
 
             <div class="cta-section">
-                <button class="cta-button" onclick="window.open('https://x.com/olascripts', '_blank')">Claim Your Spot Now</button>
+                <button class="cta-button" onclick="window.open('https://x.com/i/chat/1899471099974361088-1969778238558797824', '_blank')">Claim Your Spot Now</button>
                 <p class="urgency">⚡ Only 3 Spots Remaining This Month</p>
             </div>
         </div>
@@ -262,5 +381,34 @@
             </div>
         </div>
     </section>
+
+    <!-- Calendly Popup -->
+    <div class="calendly-popup-overlay" id="calendlyPopup">
+        <div class="calendly-popup-content">
+            <button class="calendly-popup-close" onclick="closeCalendlyPopup()">×</button>
+            <h3 class="calendly-popup-title">Ready To Talk?</h3>
+            <p class="calendly-popup-text">Let's discuss how my scripts can turn your YouTube channel into a lead-generating machine.</p>
+            <a href="https://calendly.com/tinuoyeolasubomi/30min" target="_blank" class="calendly-popup-button">Book Your Call Now</a>
+        </div>
+    </div>
+
+    <script>
+        // Show Calendly popup after 20 seconds
+        setTimeout(function() {
+            document.getElementById('calendlyPopup').classList.add('active');
+        }, 20000);
+
+        // Close popup function
+        function closeCalendlyPopup() {
+            document.getElementById('calendlyPopup').classList.remove('active');
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('calendlyPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCalendlyPopup();
+            }
+        });
+    </script>
 </body>
 </html>
